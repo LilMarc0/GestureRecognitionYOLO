@@ -34,11 +34,13 @@ class DataSaver:
         dataset = [[], []]
         for idx, label in enumerate(labels):
             dataDir = os.path.join(self.path, label)
+            pickles = []
             for _, _, f in os.walk(dataDir):
-                with open(os.path.join(dataDir, f[0]), 'rb+') as fi:
+                pickles.extend(f)
+            for file in pickles:
+                with open(os.path.join(dataDir, file), 'rb+') as fi:
                     x = pickle.load(fi)
                     for photo in x:
                         dataset[1].append(photo)
                         dataset[0].append(idx)
-                    print(dataset[0])
         return array(dataset[1]), array(dataset[0])

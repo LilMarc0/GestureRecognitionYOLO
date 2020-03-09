@@ -15,14 +15,14 @@ class GestureModel:
 
     def build(self, H, W, D, NG):
         model = Sequential()
-        model.add(Conv2D(20, (5, 5), padding='same', kernel_regularizer=l2(1e-4), input_shape=(H, W, D)))
+        model.add(Conv2D(5, (5, 5), padding='same', kernel_regularizer=l2(1e-4), input_shape=(H, W, D)))
         model.add(BatchNormalization(axis=-1))
         model.add(Activation('relu'))
-        model.add(Conv2D(59, (5, 5), padding='same', kernel_regularizer=l2(1e-4)))
+        model.add(Conv2D(5, (5, 5), padding='same', kernel_regularizer=l2(1e-4)))
         model.add(BatchNormalization(axis=-1))
         model.add(Activation('relu'))
         model.add(Flatten())
-        model.add(Dense(500))
+        model.add(Dense(10))
         model.add(Activation('relu'))
         model.add(Dense(NG))
         model.add(Activation('softmax'))
