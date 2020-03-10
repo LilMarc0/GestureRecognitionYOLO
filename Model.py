@@ -6,7 +6,12 @@ from keras.layers.merge import Add
 from keras.layers.normalization import BatchNormalization
 from keras.regularizers import l2
 from keras.optimizers import Adam
-from keras.models import Sequential
+from keras.models import Sequential, model_from_json
+import os
+import json
+
+weight_path = os.path.join('.', 'model', 'model.h5')
+conf_path = os.path.join('.', 'model', 'model.json')
 
 class GestureModel:
     def __init__(self, print_summary=False):
@@ -39,3 +44,24 @@ class GestureModel:
 
     def fit(self, X, Y):
         self.model.fit(X, Y, batch_size=1)
+
+    def load(self):
+        if os.path.exists(weight_path) and os.path.exists(conf_path):
+            with open(conf_path, 'r') as j:
+                self.model = model_from_json(j.read())
+                self.model.load_weights(weight_path)
+                self.model._make_predict_function()
+                return True
+        else:
+            print(f"model files does not exist at {weight_path}")
+            return False
+
+    def save(self):
+        if not os.path.exists(os.path.join('.', 'model')):
+            os.mkdir(os.path.join('.', 'model'))
+        self.model.save_weights(weight_path)
+        with open(conf_path, 'w') as f:
+            f.write(self.model.to_json())
+
+    def predict(self, x):
+        return self.model.predict(x)

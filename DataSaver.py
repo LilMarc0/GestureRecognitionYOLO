@@ -3,7 +3,7 @@ import os
 from numpy import array
 
 class DataSaver:
-    def __init__(self, path):
+    def __init__(self, path=os.path.join('.', 'data')):
         self.path = path
         if not os.path.isdir(path):
             os.mkdir(path)
@@ -26,7 +26,7 @@ class DataSaver:
                 break
         nblastsaved = int(lastsaved)
         newName = gesture + str(nblastsaved+1).zfill(3)
-        with open(workdir + '\\' + newName, 'wb+') as f:
+        with open(os.path.join(workdir, newName), 'wb+') as f:
             pickle.dump(data, f)
 
     def load(self):
