@@ -5,7 +5,7 @@ import numpy as np
 import cv2 as cv
 import time
 
-gestures = [str(i+1)+'deget' for i in range(5)] + ['ok', 'like', 'cadrustanga', 'cadrudreapta']
+gestures = [str(i+1)+'deget' for i in range(5)] + ['palma', 'ok', 'like', 'cadrustanga', 'cadrudreapta']
 
 def create_parser():
     parser = argparse.ArgumentParser()
