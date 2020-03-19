@@ -32,15 +32,3 @@ class DataGather:
 
     def load(self):
         return self.saver.load()
-
-
-# d = DataGather(None)
-#d.record(4, 10, 'mafiot', True)
-#sleep(2)
-#d.record(20, 10, 'doi', True)
-# X, Y = d.load()
-# Y = to_categorical(Y, 2)
-# model = GestureModel()
-# model.build(720, 1280, 3, 2)
-# model.compile()
-# model.fit(X[:100], Y[:100])
