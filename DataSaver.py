@@ -19,7 +19,7 @@ class DataSaver:
             for _, _, f in os.walk(workdir):
                 x.extend(f)
             x.sort()
-            lastsaved = x[-1]
+            lastsaved = x[-1][-3:]
         for idx, x in enumerate(lastsaved):
             if x.isdigit():
                 lastsaved = lastsaved[idx:]
@@ -40,7 +40,7 @@ class DataSaver:
             for file in pickles:
                 with open(os.path.join(dataDir, file), 'rb+') as fi:
                     x = pickle.load(fi)
-                    for photo in x:
+                    for idxp, photo in enumerate(x):
                         dataset[1].append(photo)
-                        dataset[0].append(idx)
+                        dataset[0].append(label + str(idxp))
         return array(dataset[1]), array(dataset[0])

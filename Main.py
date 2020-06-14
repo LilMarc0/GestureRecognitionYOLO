@@ -5,7 +5,16 @@ import numpy as np
 import cv2 as cv
 import time
 
-gestures = [str(i+1)+'deget' for i in range(5)] + ['palma', 'ok', 'like', 'cadrustanga', 'cadrudreapta']
+'''
+    Pumn - perlin noise
+    Artificii - 1deget
+    Ok - pendul
+    Palma - Boids
+    2degete - boids
+    like - fluide
+'''
+
+gestures = ['palma', 'ok', 'like', '1deget', '2deget', 'pumn']
 
 def create_parser():
     parser = argparse.ArgumentParser()
@@ -22,3 +31,4 @@ if __name__ == '__main__':
     saver = DataSaver()
     recorder = DataGather(saver)
     recorder.record(args.secs, args.fps, args.gest, args.show)
+
