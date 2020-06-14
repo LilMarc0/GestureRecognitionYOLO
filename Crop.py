@@ -2,9 +2,10 @@ import cv2, numpy as np
 from time import sleep
 from DataSaver import DataSaver
 import os
+from datetime import datetime
 
-if os.path.isdir('./crop'):
-    os.mkdir('./crop')
+if not os.path.isdir(os.path.join('.', 'crop')):
+    os.mkdir(os.path.join('.', 'crop'))
 
 # Click on one corner of the image,
 # then, click on the other corner on the image.
@@ -71,7 +72,7 @@ for i in range(len(data[0])):
         # crop out the object in the image
         crop = img[bottom: top, left: right]
         # write to the folder
-        nume = './cropped/' + nume
+        nume = './crop/' + str(datetime.now()).split()[-1]
         cv2.imwrite(nume + '.png', crop)
         print('Salvat ca ' + nume)
 
