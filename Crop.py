@@ -72,7 +72,7 @@ for i in range(len(data[0])):
         # crop out the object in the image
         crop = img[bottom: top, left: right]
         # write to the folder
-        nume = './crop/' + str(datetime.now()).split()[-1]
+        nume = './crop/' + nume + str(datetime.now()).split()[-1]
         cv2.imwrite(nume + '.png', crop)
         print('Salvat ca ' + nume)
 
