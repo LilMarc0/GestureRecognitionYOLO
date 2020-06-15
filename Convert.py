@@ -12,8 +12,9 @@ fisiere = os.listdir(dataDir)
 i = 0
 for fisier in fisiere:
     pickles = []
-    for _, _, f in os.walk(dataDir):
+    for _, _, f in os.walk(os.path.join(dataDir, fisier)):
         pickles.extend(f)
+        print(dataDir, fisier, f)
     for picklef in pickles:
         with open(os.path.join(dataDir, fisier, picklef), 'rb+') as fi:
             x = pickle.load(fi)
